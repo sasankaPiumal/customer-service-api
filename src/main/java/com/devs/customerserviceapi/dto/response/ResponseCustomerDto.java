@@ -13,7 +13,7 @@ public class ResponseCustomerDto {
 
     private long publicId;
     private String name;
-    private String address;
+    private String addressId;
     private double salary;
     private boolean activeState;
 }

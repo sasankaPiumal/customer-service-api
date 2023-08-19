@@ -1,6 +1,7 @@
 package com.devs.customerserviceapi.api;
 
 import com.devs.customerserviceapi.dto.request.RequestCustomerDto;
+import com.devs.customerserviceapi.dto.response.paginated.model.CustomerPaginatedDto;
 import com.devs.customerserviceapi.service.CustomerService;
 import com.devs.customerserviceapi.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,24 @@ public class CustomerController {
                 new StandardResponse(200, "Deleted Successful!", null), HttpStatus.OK
 
         );
+    }
+
+    @GetMapping(
+            path = "/all",
+            params = {"page","size","searchText"}
+
+    )
+    public ResponseEntity<StandardResponse> getAllCustomerData(
+            @RequestParam int page,
+            @RequestParam int size,
+            @RequestParam String searchText){
+        CustomerPaginatedDto allCustomers = customerService.getAllCustomers(page,size,searchText);
+
+        return new ResponseEntity<>(
+            new StandardResponse(200,"Success!",allCustomers),HttpStatus.OK
+
+        );
+
     }
 
 }

@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RequestCustomerDto {
     private String name;
-    private String address;
+    private String addressId;
     private double salary;
 }
