@@ -1,12 +1,8 @@
 package com.devs.customerserviceapi.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+public class EntryNotFoundException extends RuntimeException {
 
-@ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class EntryNotFoundException extends RuntimeException{
-
-    public EntryNotFoundException(String message) {
+    public EntryNotFoundException(String message){
         super(message);
     }
 

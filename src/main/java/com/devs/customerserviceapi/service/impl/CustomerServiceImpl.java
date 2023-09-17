@@ -79,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerPaginatedDto getAllCustomers(int page, int size, String searchText) {
         Page<Customer> customers = customerRepo.searchAllByNameOrAddressId(searchText, PageRequest.of(page, size));
-        System.out.println("Customers Entity : "+customers);
+        System.out.println("Customers Entity : " + customers);
         List<ResponseCustomerDto> selectedCustomerList = customerMapper.toResponseCustomerDtoList(customers);
         long searchedCount = customerRepo.CountDataSearchText(searchText);
         for (Customer cust : customers) {
