@@ -12,6 +12,7 @@ import com.devs.customerserviceapi.repo.UserRoleRepo;
 import com.devs.customerserviceapi.service.UserService;
 import com.devs.customerserviceapi.util.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -29,12 +30,16 @@ public class UserServiceImpl implements UserService {
 
     private final UserRoleHasUserRepo userRoleHasUserRepo;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserServiceImpl(UserRepo userRepo, UserRoleRepo userRoleRepo, UserMapper userMapper, UserRoleHasUserRepo userRoleHasUserRepo) {
+    public UserServiceImpl(UserRepo userRepo, UserRoleRepo userRoleRepo, UserMapper userMapper,
+                           UserRoleHasUserRepo userRoleHasUserRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
         this.userRoleRepo = userRoleRepo;
         this.userMapper = userMapper;
         this.userRoleHasUserRepo = userRoleHasUserRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -55,7 +60,7 @@ public class UserServiceImpl implements UserService {
                 String.valueOf(new Random().nextInt(10012)),
                 dto.getEmail(),
                 dto.getFullName(),
-                dto.getPassword()
+                passwordEncoder.encode(dto.getPassword())
         );
 
 
