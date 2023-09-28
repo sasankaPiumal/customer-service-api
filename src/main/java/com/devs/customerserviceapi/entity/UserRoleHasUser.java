@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
